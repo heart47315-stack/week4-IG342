@@ -117,6 +117,93 @@ main {
 
 /* CONTROLS */
 
+.recipe-toolbar {
+  margin-top: 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 20px;
+}
+
+.recipe-toolbar h2 {
+  font-size: 27px;
+}
+
+.recipe-toolbar p {
+  color: #9a9089;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.add-recipe-button,
+.save-recipe-button {
+  border: none;
+  border-radius: 11px;
+  background: #df7039;
+  color: white;
+  padding: 11px 17px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.add-recipe-form {
+  margin-top: 20px;
+  padding: 24px;
+  background: white;
+  border: 1px solid #eee4dc;
+  border-radius: 18px;
+  box-shadow: 0 5px 20px rgba(80, 50, 30, 0.04);
+}
+
+.add-recipe-form h3 {
+  margin-bottom: 17px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.add-recipe-form label {
+  display: grid;
+  gap: 6px;
+  color: #625850;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.add-recipe-form label span {
+  color: #a0958d;
+  font-weight: 400;
+}
+
+.add-recipe-form input,
+.add-recipe-form textarea {
+  width: 100%;
+  border: 1px solid #eadfd6;
+  border-radius: 9px;
+  padding: 10px;
+  font: inherit;
+  color: #332d29;
+  outline: none;
+}
+
+.add-recipe-form textarea {
+  min-height: 95px;
+  resize: vertical;
+}
+
+.add-recipe-form input:focus,
+.add-recipe-form textarea:focus {
+  border-color: #df7039;
+}
+
+.save-recipe-button {
+  margin-top: 3px;
+}
+
 .controls {
   margin-top: 35px;
 }
@@ -267,6 +354,20 @@ main {
 
 .recipe-content {
   padding: 17px;
+  position: relative;
+}
+
+.delete-recipe-button {
+  float: right;
+  border: none;
+  background: transparent;
+  color: #b9aaa0;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.delete-recipe-button:hover {
+  color: #c84e2c;
 }
 
 .recipe-category {
@@ -606,6 +707,15 @@ footer {
 
   .hero h2 {
     font-size: 38px;
+  }
+
+  .recipe-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
   }
 
   .recipe-grid {

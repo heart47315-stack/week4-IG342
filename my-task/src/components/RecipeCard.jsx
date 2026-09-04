@@ -2,7 +2,8 @@ function RecipeCard({
   recipe,
   isFavorite,
   onFavorite,
-  onSelect
+  onSelect,
+  onDelete
 }) {
   return (
     <article className="recipe-card">
@@ -21,6 +22,13 @@ function RecipeCard({
       </div>
 
       <div className="recipe-content">
+        <button
+          className="delete-recipe-button"
+          onClick={() => onDelete(recipe.id)}
+          type="button"
+        >
+          ลบเมนู
+        </button>
         <div className="recipe-category">
           {recipe.category}
         </div>

@@ -1,8 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function CookingTimer({ initialMinutes }) {
   const [seconds, setSeconds] = useState(initialMinutes * 60);
   const [isRunning, setIsRunning] = useState(false);
+  const previousSeconds = useRef(initialMinutes * 60);
+
+  const playFinishedSound = () => {
+    const audioContext = new window.AudioContext();
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+
+    oscillator.type = "sine";
+    oscillator.frequency.setValueAtTime(880, audioContext.currentTime);
+    oscillator.frequency.setValueAtTime(660, audioContext.currentTime + 0.2);
+    gain.gain.setValueAtTime(0.25, audioContext.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.8);
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+    oscillator.start();
+    oscillator.stop(audioContext.currentTime + 0.8);
+  };
 
   useEffect(() => {
     if (!isRunning) return;
@@ -22,15 +39,18 @@ function CookingTimer({ initialMinutes }) {
   }, [isRunning]);
 
   useEffect(() => {
-    setSeconds(initialMinutes * 60);
-    setIsRunning(false);
-  }, [initialMinutes]);
+    if (seconds === 0 && previousSeconds.current > 0) {
+      playFinishedSound();
+    }
+    previousSeconds.current = seconds;
+  }, [seconds]);
 
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
 
   const resetTimer = () => {
     setSeconds(initialMinutes * 60);
+    previousSeconds.current = initialMinutes * 60;
     setIsRunning(false);
   };
 

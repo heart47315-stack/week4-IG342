@@ -4,7 +4,8 @@ function RecipeList({
   recipes,
   favorites,
   onFavorite,
-  onSelect
+  onSelect,
+  onDelete
 }) {
   if (recipes.length === 0) {
     return (
@@ -25,6 +26,7 @@ function RecipeList({
           isFavorite={favorites.includes(recipe.id)}
           onFavorite={onFavorite}
           onSelect={onSelect}
+          onDelete={onDelete}
         />
       ))}
     </div>

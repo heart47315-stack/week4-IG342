@@ -53,7 +53,7 @@ function RecipeDetail({
             : "🤍 เพิ่มในรายการโปรด"}
         </button>
 
-        <CookingTimer initialMinutes={recipe.time} />
+        <CookingTimer key={recipe.id} initialMinutes={recipe.time} />
 
         <div className="detail-section">
           <h3>🛒 วัตถุดิบ</h3>
